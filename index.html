@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Taskme: Set your tasks</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var textarea = document.querySelector("textarea");
+
+            textarea.addEventListener("keydown", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+
+            textarea.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13 && event.shiftKey) {
+                    var text = this.value;
+                    var cursorPosition = this.selectionStart;
+                    this.value = text.substring(0, cursorPosition) + "\n" + text.substring(cursorPosition);
+                    this.selectionStart = cursorPosition + 1;
+                    this.selectionEnd = cursorPosition + 1;
+                }
+
+                // Update the textarea height based on its scrollHeight
+                this.style.height = "auto";
+                this.style.height = this.scrollHeight + "px";
+            });
+
+            textarea.addEventListener("input", function (event) {
+                // Update the textarea height based on its scrollHeight
+                this.style.height = "auto";
+                this.style.height = this.scrollHeight + "px";
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="left">
+            <img class="flower top-left" src="/assets/flower1.jpg" alt="Flower 1">
+            <img class="flower top-mid-left" src="/assets/flower6.png" alt="Flower 6">
+            <img class="flower bottom-left" src="/assets/flower3.jpg" alt="Flower 3">
+            <img class="flower bottom-mid-left" src="/assets/flower8.png" alt="Flower 8">
+        </div>
+        <div class="right">
+            <img class="flower top-right" src="/assets/flower2.jpg" alt="Flower 2">
+            <img class="flower bottom-right" src="/assets/flower4.jpg" alt="Flower 4">
+            <img class="flower top-mid-right" src="/assets/flower5.png" alt="Flower 5">
+            
+            <img class="flower bottom-mid-right" src="/assets/flower7.png" alt="Flower 7">
+        </div>
+        <div class="leftpane"></div>
+        <div class="container">
+            <div class="add_new_task">
+                <textarea id="task_text" placeholder="Set a task" rows="1" maxlength="200" autofocus></textarea>
+                <button id="add_task">
+                    <img id="send_task" src="assets/send_task.png" alt="Add task" width="20">
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

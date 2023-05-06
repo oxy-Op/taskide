@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+body {
+    background-color: #FF7F50;
+}
+
+
+.flower {
+    position: fixed;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.top-mid-right {
+    top: 170px;
+    right: 0
+}
+
+.top-mid-left {
+    top: 200px;
+    left: 0
+}
+
+.bottom-mid-right {
+    bottom: 200px;
+    right: 0
+}
+
+.bottom-mid-left {
+    bottom: 170px;
+    left: 0;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.container {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFE0;
+    width: 55%;
+    height: 90%;
+}
+
+.add_new_task {
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: #B0C4DE;
+    padding: 1rem;
+    align-self: flex-end;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 6px 0px rgb(51, 55, 81);
+    justify-content: center;
+}
+
+#task_text {
+    border: none;
+    caret-color: rgba(16, 54, 182, 0.611);
+    width: 100%;
+    min-height: 20px;
+    max-height: 100px;
+    overflow: auto;
+    margin-right: 60px;
+    resize: none;
+    align-self: center;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#task_text::placeholder {
+    color: #5c626b;
+}
+
+#task_text:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1.5px solid saddlebrown;
+}
+
+#add_task {
+    display: inline-block;
+    position: fixed;
+    border: none;
+    background: transparent;
+    align-self: center;
+    right: 1.5vw;
+    box-shadow: 0 0 0.5px 0 rgba(47, 43, 69, 0.271);
+}
+
+#add_task:hover {
+    box-shadow: 0 0 1px 0 rgb(90, 73, 85);
+    background-color: #7f95b7;
+    padding: 1px;
+}
+
+.leftpane {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    background-color: #ffe0e0;
+    width: 17%;
+    height: 90%;
+}
