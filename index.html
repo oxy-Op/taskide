@@ -2,77 +2,171 @@
 <html lang="en">
 
 <head>
+    <!--Head -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <title>Taskme: Set your tasks</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var textarea = document.querySelector("textarea");
-
-            textarea.addEventListener("keydown", function (event) {
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                }
-            });
-
-            textarea.addEventListener("keyup", function (event) {
-                if (event.keyCode === 13 && event.shiftKey) {
-                    var text = this.value;
-                    var cursorPosition = this.selectionStart;
-                    this.value = text.substring(0, cursorPosition) + "\n" + text.substring(cursorPosition);
-                    this.selectionStart = cursorPosition + 1;
-                    this.selectionEnd = cursorPosition + 1;
-                }
-
-                // Update the textarea height based on its scrollHeight
-                this.style.height = "auto";
-                this.style.height = this.scrollHeight + "px";
-            });
-
-            textarea.addEventListener("input", function (event) {
-                // Update the textarea height based on its scrollHeight
-                this.style.height = "auto";
-                this.style.height = this.scrollHeight + "px";
-            });
-        });
-    </script>
-
+    <script defer src="index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.2/purify.min.js"></script>
+    <noscript>Please enable javascript</noscript>
+    <!-- Head End -->
 </head>
 
 <body>
+    <!-- wrapper -->
     <div class="wrapper">
-        <div class="left">
-            <img class="flower top-left" src="/assets/flower1.jpg" alt="Flower 1">
+        <!-- <div class="left">
+            <img class="flower top-left" src="/assets/flower1.png" alt="Flower 1">
             <img class="flower top-mid-left" src="/assets/flower6.png" alt="Flower 6">
-            <img class="flower bottom-left" src="/assets/flower3.jpg" alt="Flower 3">
+            <img class="flower bottom-left" src="/assets/flower3.png" alt="Flower 3">
             <img class="flower bottom-mid-left" src="/assets/flower8.png" alt="Flower 8">
-        </div>
+        </div> -->
+        <!-- leftpane where task list are present -->
         <div class="leftpane">
-            <div tabindex="0" class="addlist" role="button">
-                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
-                    stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                Add list
+            <!-- each individual list is in lists container -->
+            <div class="lists">
+                <!-- <li>
+                    <a>
+                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe rem debitis laudantium fugiat inventore corrupti omnis culpa esse officiis. Possimus et ipsam a eligendi mollitia placeat aperiam recusandae? Aut, tempora?</span>
+                    </a>
+                    <div>
+                        <button id="task_edit">
+                            <img src="edit.svg" alt="edit svg">
+                        </button>
+                        <button id="task_delete">
+                            <img src="delete.svg" alt="delete svg">
+                        </button>
+                    </div>
+                </li> -->
+                <li ><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li ><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+                <li><a><span>s</span></a>
+                    <div><button class="task_edit"><img src="assets/edit.svg" alt="edit svg"></button><button class="task_delete"><img
+                                src="assets/delete.svg" alt="delete svg"></button></div>
+                </li>
+
             </div>
-        </div>
-        <div class="container">
-            <div class="add_new_task">
-                <textarea id="task_text" placeholder="Set a task" rows="1" maxlength="200" autofocus></textarea>
-                <button id="add_task">
-                    <img id="send_task" src="assets/send_task.png" alt="Add task" width="20">
+            <!-- bottom container inside leftpane which holds add list button  -->
+            <div class="bottom-leftpane">
+                <button id="addlist_btn" tabindex="0" onclick="addList();" class="addlist">
+                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                        stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Add a list</span>
                 </button>
             </div>
+            <!-- bottom container end -->
         </div>
+        <!-- end leftpane -->
+
+        <!-- container where tasks are displayed -->
+        <div class="container">
+            <!-- each task is inside tasks class container -->
+            <div class="tasks">
+                <!-- <li>
+                    <span>Hello it is a task Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores dolor vero minima suscipit quod ut voluptatibus officia nesciunt, ratione assumenda placeat iste inventore aut consectetur ex maxime mollitia modi blanditiis.</span>
+                    <div>
+                        <button id="task_edit">
+                            <img src="edit.svg" alt="edit svg">
+                        </button>
+                        <button id="task_delete">
+                            <img src="delete.svg" alt="delete svg">
+                        </button>
+                    </div>
+                </li> -->
+                
+
+                <!-- data is dynamically added here -->
+            </div>
+            <!-- end tasks -->
+            <!-- wrapper contains the textarea and send button to append task -->
+            <div class="addwraper">
+                <!-- container for send task button and textarea -->
+                <div class="add_new_task">
+                    <textarea id="task_text" placeholder="Set a task" rows="1" maxlength="200" autofocus "></textarea>
+                    <button id="add_task" onclick="addTask();">
+                        <img id="send_task" src="assets/send_task.png" alt="Send task" width="20">
+                    </button>
+                    </div>
+                <!-- end textarea -->
+            </div>
+
+            <!-- end wrapper -->
+        </div>
+
+        <!-- end container -->
+
+        <!-- right pane where other information is stored it is basically aside -->
         <div class="right">
-            <img class="flower top-right" src="/assets/flower2.jpg" 
-            alt="Flower 2">
-            <img class="flower bottom-right" src="/assets/flower4.jpg" alt="Flower 4">
-            <img class="flower top-mid-right" src="/assets/flower5.png" alt="Flower 5">
-            <img class="flower bottom-mid-right" src="/assets/flower7.png" alt="Flower 7">
+            <img src="/assets/flower5.png" alt="Flower 5">
+            <!-- <img src="/assets/flower3.png" alt="Flower 3">
+            <img src="/assets/flower4.png" alt="Flower 4"> -->
+            <img src="/assets/flower7.png" alt="Flower 7">
         </div>
     </div>
 </body>
