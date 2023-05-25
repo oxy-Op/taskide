@@ -100,6 +100,7 @@ body {
 
 .tasks li {
     display: flex;
+    /* flex-direction: column; */
     padding: 1rem;
     width: 90%;
     height: auto;
@@ -127,22 +128,74 @@ body {
     height: auto;
     color: rgb(255, 255, 255);
     font-size: 20px;
-    white-space: pre-line;
+    white-space:break-spaces;
     word-wrap: break-word;
-    word-break: keep-all;
-
+    overflow: hidden;
 }
 
-.tasks li div>button,
-button>img {
+.options>button,
+.options>img {
     background: transparent;
     border: none;
     outline: none;
     vertical-align: bottom;
 }
 
-.tasks li div>button:hover {
+.options>button:hover {
     background-color: var(--btn-hover-color);
+}
+
+.taskedit {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    height: inherit;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    background: transparent;
+    resize: none;
+    max-height: 300px;
+}
+
+.editoptions {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.tasksubmit {
+    background-color: rgb(195, 135, 15);
+    width: 80px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0.3px 0.3px 3px rgb(27, 21, 29);
+}
+
+.tasksubmit:is(:hover) {
+    background-color: rgba(195, 135, 15, 0.566);
+}
+
+
+.tasksubmit:disabled{
+    background-color: gray;
+}
+
+.cancelsubmit {
+    margin-left: 10px;
+    background-color: rgb(231, 231, 230);
+    width: 80px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0.3px 0.3px 3px rgb(27, 21, 29);
+}
+
+.cancelsubmit:is(:hover) {
+    background-color: rgb(215, 211, 211);
 }
 
 .addwraper {
@@ -202,14 +255,7 @@ button>img {
     padding: 1px;
 }
 
-.taskedit{
-    width: inherit;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    min-height: 20px;
-    height: auto;
-}
+
 
 .leftpane {
     display: flex;
