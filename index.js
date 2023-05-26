@@ -1,102 +1,3 @@
-// document.getElementById('task_text').addEventListener('keydown', function handleKeyDown(event) {
-//     if (event.key === 'Enter" && !event.shiftKey) {
-//         event.preventDefault(); // Prevent the default Enter key behavior
-//         var txt = document.getElementById('task_text');
-//         if (txt.value === ''){
-//             return;
-//         }
-//         var lists = document.getElementsByClassName('tasks')[0];
-//         var list_ = document.createElement('li');
-//         var alink = document.createElement('a');
-//         var txt = document.createElement('div');
-//         txt.innerText = document.getElementById('task_text').value;
-//         var div = document.createElement('div');
-//         div.className = 'options';
-//         var btn = document.createElement('button');
-//         btn.className = 'options edit';
-//         var img = document.createElement('img');
-//         img.src = 'assets/edit.png';
-//         img.width = 20;
-//         img.height = 20;
-//         btn.appendChild(img);
-//         var btn2 = document.createElement('button');
-//         btn2.className = 'options delete';
-//         var img2 = document.createElement('img');
-//         img2.src = 'assets/delete.png';
-//         img2.width = 20;
-//         img2.height = 20;
-//         btn.appendChild(img2);
-//         div.appendChild(btn);
-//         div.appendChild(btn2);
-//         alink.appendChild(txt);
-//         list_.appendChild(alink)
-//         list_.appendChild(div);
-//         lists.appendChild(list_)
-//         document.getElementById('task_text').value = '';
-//     }
-// })
-
-// document.getElementById('addlist_btn').addEventListener('click', function (e) {
-//     e.preventDefault();
-//     var input_list = document.createElement('input');
-//     var add_btn = document.getElementById('addlist_btn');
-//     var parent = document.getElementsByClassName('bottom-leftpane')[0];
-//     input_list.id = 'input_list';
-//     input_list.className = 'addlist';
-//     input_list.type = 'text';
-//     input_list.autocomplete = 'off';
-//     input_list.maxLength = 20;
-//     parent.appendChild(input_list);
-//     add_btn.style.display = 'none';
-//     input_list.focus();
-
-//     document.getElementById('input_list').addEventListener('blur', function () {
-//         parent.appendChild(add_btn);
-//         parent.removeChild(input_list);
-//         add_btn.style.display = 'block';
-//     });
-
-//     document.getElementById('input_list').addEventListener('keyup', function handleKeyDown(event) {
-//         if (event.key === "Enter" && !event.shiftKey) {
-//             event.preventDefault(); // Prevent the default Enter key behavior
-//             if (input_list.value === ''){
-//                 return;
-//             }
-//             var lists = document.getElementsByClassName('lists')[0];
-//             var list_ = document.createElement('li');
-//             var alink = document.createElement('a');
-//             var txt = document.createElement('span');
-//             txt.innerText = document.getElementById('input_list').value;
-//             var div = document.createElement('div');
-//             div.className = 'options';
-//             var btn = document.createElement('button');
-//             btn.className = 'options edit';
-//             var img = document.createElement('img');
-//             img.src = 'assets/edit.png';
-//             img.width = 20;
-//             img.height = 20;
-//             btn.appendChild(img);
-//             var btn2 = document.createElement('button');
-//             btn2.className = 'options delete';
-//             var img2 = document.createElement('img');
-//             img2.src = 'assets/delete.png';
-//             img2.width = 20;
-//             img2.height = 20;
-//             btn.appendChild(img2);
-//             div.appendChild(btn);
-//             div.appendChild(btn2);
-//             alink.appendChild(txt);
-//             list_.appendChild(alink)
-//             list_.appendChild(div);
-//             lists.appendChild(list_)
-
-//             input_list.value = '';
-//         }
-//     })
-// });
-
-
-
 $(document).ready(function () {
     $("#task_text").on({
         input: function () {
@@ -112,9 +13,7 @@ $(document).ready(function () {
 });
 
 
-
-
-$(document).delegate('.task_delete','click', function () {
+$(document).on('click', '.task_delete', function () {
     var me = $(this);
     $(me).parents('li').animate({
         width: 0,
@@ -125,54 +24,76 @@ $(document).delegate('.task_delete','click', function () {
     })
 })
 
-$(document).delegate(
-    '.task_edit',
-    'click', function () {
-        var span = $(this).parents('li').children('span');
-        var input = $('<textarea id="editarea" autocomplete="off" maxlength=200 class="taskedit" rows=5 >').val(span.text());
-        input.css({
-            height: span.height(),
-            width: span.width()
-        })
-        span.replaceWith(input);
-        $('#editarea').on('input', function () {
-            $(this).height(0); // Reset the height to 0
-            $(this).height(this.scrollHeight);
+$(document).on('click', '.task_edit', function () {
+    var parent = $(this).closest('li');
+    var span = parent.children('span');
+    var input = $('<textarea id="editarea" autocomplete="off" maxlength="200" class="taskedit" rows="5">').val(span.text());
+    var opt = parent.children('.options');
+
+    // Set the textarea height and width to match the span element's height and width
+    input.css({
+        height: span.height(),
+        width: span.width()
+    });
+
+    // Hide span and show textarea
+    span.hide();
+    parent.append(input);
+    input.focus();
+
+    // When user types in textarea
+    input.on('input', function () {
+        $(this).height(0); // Reset the height to 0
+        $(this).height(this.scrollHeight);
+
+        // Disable submit button if values are whitespace(s)
+        if ($(this).val().trim() === "") {
+            submit.prop('disabled', true);
+        } else {
             submit.prop('disabled', false);
-            if ($(this).val().trim() === "") {
-                submit.prop('disabled', true);
-            }
         }
-        )
-        var submit = $('<button type="submit" class="tasksubmit">Submit</button>');
-        var cancel = $('<button type="submit" class="cancelsubmit">Cancel</button>');
-        var li = $(this).parents('li');
-        var editoptions = $('<div class="editoptions"></div>').append(submit,cancel);
-        li.append(editoptions);
-        li.css('flex-direction', 'column');
-        li.children('div .options').hide();
-        submit.prop('disabled',true);
-        $(document).delegate(
-            '.cancelsubmit', 'click', function () {
-                li.css('flex-direction', 'row');
-                li.children('div .editoptions').hide();
-                li.children('div .options').show(500);
-                span.show();
-                input.hide();
-            }
-        )
-        $(document).delegate('.tasksubmit', 'click', function (e) {
-            li.css('flex-direction', 'row');
-            li.children('div .editoptions').hide();
-            li.children('div .options').show(500);
-            var s = $('<span>').text(input.val());
-            input.replaceWith(s);
-            input.css({
-                height: 0,
-                width: 0
-            })
-        })
-    })
+    });
+
+    // Submit button
+    var submit = $('<button>').attr('type', 'submit').addClass('tasksubmit').text('Submit');
+
+    // Create the cancel button
+    var cancel = $('<button>').attr('type', 'submit').addClass('cancelsubmit').text('Cancel');
+
+    // Create the div container and append the buttons
+    var editoptions = $('<div>').addClass('editoptions').append(submit, cancel);
+    // Append to parent container
+    parent.append(editoptions);
+
+    // Function to show .options and .editoptions when cancel button is clicked
+    function showDiv() {
+        parent.css('flex-direction', 'row');
+        parent.children('.editoptions').remove();
+        parent.append(opt);
+    }
+
+    parent.css('flex-direction', 'column');
+    parent.children('.options').remove();
+    submit.prop('disabled', true);
+
+    // When cancel button is clicked
+    editoptions.on('click', '.cancelsubmit', function () {
+        showDiv();
+        span.show();
+        input.remove();
+    });
+
+    // When submit button is clicked
+    editoptions.on('click', '.tasksubmit', function () {
+        showDiv();
+        span.text(input.val()).show();
+        input.remove();
+        input.css({
+            height: 0,
+            width: 0
+        });
+    });
+});
 
 
 
@@ -202,54 +123,124 @@ function addTask() {
     textarea_.height('');
     var myElement = $('.tasks');
     myElement.scrollTop((myElement[0].scrollHeight + 100) - myElement.outerHeight());
-    
 };
 
+// Function to handle the process of adding items to a list container
 function addList() {
-    var parent = $('#addlist_btn').parent();
-    var child = $('#addlist_btn');
-    parent.children().replaceWith($('<input id="input_list" class="addlist" type="text" autocomplete="off" maxlength="20" placeholder="Name your list">'));
-    parent.children().focus();
+    var parent = $('#addlist_btn').parent(); // Reference to the parent element
+    var child = $('#addlist_btn'); // Reference to the add list button element
 
+    // Replace the parent's children with an input element and set focus on it
+    parent.empty().append($('<input id="input_list" class="addlist" type="text" autocomplete="off" maxlength="20" placeholder="Name your list">')).children().focus();
+
+    // Event handlers for the add list input
     $('.addlist').on({
+        // Handle keydown event
         keydown: function (e) {
-            var myElement = $('.lists');
             if (e.key === 'Enter') {
-                if ($('.addlist').val().trim() == '') {
-                    return;
+                var userInput = $.trim($('.addlist').val()); // Get user input and trim any whitespace
+                if (userInput === '') {
+                    return; // Do nothing if input is empty
                 }
-                let userInput = $('.addlist').val();
-                let item = $('<li>').append($('<a>').append($('<span>').text(userInput))).hide(300).show(300, function(){
-                    myElement.scrollTop((myElement[0].scrollHeight) - myElement.outerHeight())
+
+                var myElement = $('.lists'); // Reference to the list container
+                var item = $('<li>').append($('<a>').append($('<span>').text(userInput))).hide(300).show(300, function () {
+                    myElement.scrollTop(myElement[0].scrollHeight - myElement.outerHeight()); // Scroll to the bottom of the list container
                 });
-                $('.lists').append(item);
-                $(".lists li").last().append("<div><button class = 'list_task_edit' ><img src='assets/edit.svg' alt='edit svg'></button><button class='task_delete'><img src='assets/delete.svg' alt='delete svg'></button></div>")
-                
-                parent.animate({
-                    opacity: 0
-                }, 200, function () {
-                    parent.children().replaceWith(child)
-                }).animate({
-                    opacity: 1
-                }, 200, function () {
-                    parent.children().replaceWith(child)
-                })
+
+                item.append("<div><button class='list_task_edit'><img src='assets/edit.svg' alt='edit svg'></button><button class='task_delete'><img src='assets/delete.svg' alt='delete svg'></button></div>");
+                $('.lists').append(item); // Append the new item to the list container
+
+                parent.empty().append(child); // Replace the input with the original button
             }
         },
+        // Handle blur event
         blur: function () {
-            $(this).animate({
+            var input = $(this); // Reference to the input element
+            input.animate({
                 width: 0,
                 opacity: 0
-            }, 300,
-                function () {
-                    parent.animate({
-                        opacity: 1
-                    }, 400, function () {
-                        parent.children().replaceWith(child)
-                    })
+            }, 300, function () {
+                parent.animate({
+                    opacity: 1
+                }, 200, function () {
+                    parent.empty().append(child); // Replace the input with the original button
                 });
-        },
-    }
-    )
+            });
+        }
+    });
 }
 
+
+$(document).on('click', '.list_task_edit', function () {
+    var parent = $(this).closest('li');
+    var span = parent.children('a').children('span');
+    var opt = parent.children('div')
+    opt.remove();
+    var inputElement = $('<input>', {
+        type: 'text',
+        maxlength: 20,
+        autocomplete: 'off',
+        class: 'list_textbox',
+        value: span.text(),
+    });
+    span.remove();
+    parent.children('a').append(inputElement);
+    inputElement.focus();
+    // inputElement.on('input', function (e) {
+    //     // Disable submit button if values are whitespace(s)
+    //     if ($(this).val().trim() === "") {
+    //        e.preventDefault();
+    //     }
+    // });
+
+    // Create the submit button
+    var submit = $('<button>').attr('type', 'submit').addClass('list_tasksubmit').append($('<img>').attr('src', '/assets/tick.svg'))
+
+    // Create the cancel button
+    var cancel = $('<button>').attr('type', 'submit').addClass('list_cancelsubmit').append($('<img>').attr('src', '/assets/cross.svg'))
+
+    var editoption = $('<div>').append(submit, cancel);
+    // Append to parent container
+    parent.append(editoption);
+
+    inputElement.on('keydown', function (e) {
+        if (e.key === 'Enter') {
+            if ($(this).val().trim() === "") {
+                e.preventDefault();
+            }
+            else {
+                buttonClicked = true;
+                $('.list_tasksubmit').click();
+            }
+        }
+    })
+
+    var buttonClicked = false;
+
+    editoption.on('click', '.list_tasksubmit', function () {
+        if (inputElement.val().trim() === "") {
+            e.preventDefault();
+        }
+        else{
+        buttonClicked = true;
+        inputElement.remove();
+        parent.children('a').append(span.text(inputElement.val()));
+        parent.children('div').remove();
+        parent.append(opt);}
+    });
+
+    inputElement.on('blur', function () {
+        if (!buttonClicked) {
+            inputElement.remove();
+            parent.children('a').append(span);
+            parent.children('div').remove();
+            parent.append(opt);
+        }
+    });
+
+    $('.list_tasksubmit').on('mousedown', function () {
+        buttonClicked = true;
+    });
+
+});

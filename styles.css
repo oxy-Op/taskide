@@ -8,8 +8,9 @@ a {
     text-decoration: none;
 }
 
+
 :root {
-    --body-color: #2a828a;
+    --body-color: #0f6ecd;
     --container-background: #FFFFE0;
     --task-color: #27a6af9a;
     --task-hover-color: #36369a73;
@@ -47,7 +48,7 @@ body {
     background: #555;
 }
 
-.right>img {
+/* .right>img {
     background-repeat: no-repeat;
     width: 200px;
     height: 200px;
@@ -59,7 +60,7 @@ body {
 
 .right img:last-child {
     margin: auto
-}
+} */
 
 .wrapper {
     display: flex;
@@ -67,14 +68,14 @@ body {
     height: 100%;
 }
 
-.left,
+/* .left,
 .right {
     display: flex;
     width: 20%;
     height: 100%;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .container {
     position: relative;
@@ -128,7 +129,7 @@ body {
     height: auto;
     color: rgb(255, 255, 255);
     font-size: 20px;
-    white-space:break-spaces;
+    white-space: break-spaces;
     word-wrap: break-word;
     overflow: hidden;
 }
@@ -179,7 +180,7 @@ body {
 }
 
 
-.tasksubmit:disabled{
+.tasksubmit:disabled {
     background-color: gray;
 }
 
@@ -293,14 +294,14 @@ body {
 
 .lists li a span {
     color: rgb(255, 2, 2);
-    font-size: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    word-wrap: break-word;
-    word-break: keep-all;
-    /* white-space: nowrap; */
+    display: inline-block;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
-.lists li a span::before {
+.lists li::before {
     content: url(/assets/svg_list.svg);
     vertical-align: middle;
     padding-right: 10px;
@@ -379,4 +380,22 @@ button>img {
 
 #input_list {
     caret-color: #7f95b7;
+}
+
+.list_tasksubmit img {
+    width: 20px;
+    height: 20px;
+}
+
+.list_cancelsubmit img {
+    width: 20px;
+    height: 20px;
+}
+
+.list_textbox {
+    background: transparent;
+    border: solid #7f95b7;
+    caret-color: rgb(14, 168, 220);
+    outline: none;
+    color: rgb(255, 0, 0);
 }
