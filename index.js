@@ -10,6 +10,23 @@ $(document).ready(function () {
             }, 500).show(200);
         }
     });
+
+    $('.profile_icon').on('click', function () {
+        $('.profile').toggle(200).css('display', 'flex');
+    });
+
+
+    var excludedSelectors = '.profile, .profile_icon';
+
+    $(window).on('click', function (e) {
+        var isExcluded = $(e.target).closest(excludedSelectors).length > 0;
+
+        if (!isExcluded) {
+            $('.profile').hide(400);
+        }
+    });
+
+
 });
 
 
@@ -243,4 +260,64 @@ $(document).on('click', '.list_task_edit', function () {
         buttonClicked = true;
     });
 
+});
+
+
+$(document).ready(function () {
+    function isMobileDevice() {
+        return $(window).width() <= 768;
+    }
+
+    function attachEventHandlers() {
+
+        $('#toggle_on').on('click', function () {
+            $('.leftpane').animate({
+                width: '80%',
+                display: 'flex'
+            }, 300, function (){
+                $('#toggle_on').hide();
+                $('#toggle_off').show();
+                $('.bottom-leftpane').show();
+            })
+        });
+
+        $('#toggle_off').on('click', function () {
+            $('.leftpane').animate({
+                width: '0%'
+            }, 300, function (){
+                $('#toggle_on').show();
+                $('#toggle_off').hide();
+                $('.bottom-leftpane').hide();
+            });
+            
+        });
+    }
+
+    function detachEventHandlers() {
+        $('#toggle_on, #toggle_off').off('click');
+    }
+
+    function updateLayout() {
+        if (isMobileDevice()) {
+            // Mobile layout
+            detachEventHandlers();
+            attachEventHandlers();
+        } else {
+            // Desktop layout
+            detachEventHandlers();
+            $('.leftpane, .bottom-leftpane').removeAttr('style');
+        }
+    }
+
+    updateLayout();
+
+    $(window).on('resize', function () {
+        updateLayout();
+    });
+
+    $('.container').on('click', function (e) {
+        if (isMobileDevice() && $('#toggle_off').is(':visible') ) {
+            $('#toggle_off').click()
+        }
+    });
 });
