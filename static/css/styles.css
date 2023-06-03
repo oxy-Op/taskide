@@ -115,6 +115,7 @@ header .main_text {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 30px;
 
 }
 
@@ -315,8 +316,10 @@ header .profile .logout button:hover {
     display: flex;
     flex-direction: column;
     width: 95%;
-    height: 10%;
+    height: auto;
+    max-height: 300px;
     margin-left: 20px;
+    padding-top: 10px;
     border-top: 2px solid rgb(22, 91, 69);
     margin-bottom: var(--btm-margin);
 }
@@ -385,6 +388,7 @@ header .profile .logout button:hover {
 }
 
 .lists {
+    text-align: center;
     /* List container inside leftpane */
     overflow-y: auto;
     overflow-x: hidden;
@@ -407,17 +411,27 @@ header .profile .logout button:hover {
     transition: transform 0.3s ease-in-out;
 }
 
+.lists li a:hover {
+    cursor: pointer;
+}
+
+.lists li.selected {
+    background: linear-gradient(0deg, rgba(35, 80, 80, 1) 0%, rgba(40, 112, 131, 1) 43%, rgba(36, 59, 60, 1) 100%);
+    ;
+}
+
+
 .lists li a span {
     color: rgb(255, 255, 255);
     display: inline-block;
     max-width: 180px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: clip;
+    text-overflow: ellipsis;
 }
 
 .lists li::before {
-    content: url(/assets/svg_list.svg);
+    content: url(/static/assets/svg_list.svg);
     vertical-align: middle;
     padding-right: 10px;
 }
@@ -524,8 +538,57 @@ button>img {
     outline: none;
 }
 
+#error {
+    display: none;
+    flex-direction: row;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 3;
+    background-color: rgb(235, 162, 16);
+    width: auto;
+    padding: 0 10px;
+    max-width: 400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-out;
+}
+
+#error span {
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 15px;
+    flex-grow: 1;
+}
+
+#error:hover {
+    outline: solid 1px #2d2d2d;
+    transform: scale(1.02);
+}
+
+#error #error_dismiss {
+    background: transparent;
+    outline: none;
+    border: none;
+    margin-right: 10px;
+    transition: transform 0.2s ease-out;
+}
+
+#error #error_dismiss:hover {
+    transform: scale(1.1);
+    box-shadow: 0.3px 0.3px 3px rgb(27, 21, 29);
+}
+
 /* CSS code for desktop */
 /* ... existing styles ... */
+
+
 
 @media (max-width: 768px) {
     /* CSS code for mobile devices */
@@ -602,6 +665,7 @@ button>img {
         padding-right: 4px;
     }
 
+
     .bottom-leftpane {
         width: 90%;
         display: none;
@@ -616,4 +680,11 @@ button>img {
         padding: 1rem;
     }
 
+}
+
+@media (max-width: 1229px) and (min-width: 769px) {
+
+    .lists li a span {
+        max-width: 100px;
+    }
 }

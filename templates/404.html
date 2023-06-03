@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: content-box;
+            height: 100%;
+            background: linear-gradient(282deg, #00b398 8%, #07b6cf 93%);
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        #icon {
+            margin-left: 15px;
+        }
+
+        header {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            background-color: #444654;
+            align-items: center;
+        }
+
+        header .main_text {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+
+        .text_t {
+            color: #e0a80d;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        main {
+            display: grid;
+            place-items: center;
+        }
+
+        h1 {
+            height: 150px;
+            padding-bottom: 0;
+            margin-bottom: 0px;
+        }
+
+        .gradient-text {
+            text-align: center;
+            font-size: 120px;
+            background-image: linear-gradient(90deg, rgba(131, 58, 180, 1) 21%, rgba(208, 102, 75, 1) 56%, rgba(200, 66, 71, 1) 79%, rgba(235, 233, 88, 1) 95%, rgba(252, 176, 69, 1) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .para {
+            text-align: center;
+            color: #d62121;
+            font-size: 30px;
+        }
+
+        #home {
+            outline: none;
+            border-radius: 10px;
+            width: 200px;
+            height: 40px;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-weight: 500;
+            color: #ffffff;
+            text-shadow: none;
+            background: linear-gradient(90deg, rgba(131, 58, 180, 1) 10%, rgba(189, 115, 127, 1) 79%);
+            box-shadow: transparent;
+            border: 1px solid #9011d5bc;
+            transition: 0.5s ease;
+            user-select: none;
+        }
+
+        #home:hover,
+        :focus {
+            color: #ffffff;
+            background: #008cff;
+            border: 1px solid #008cff;
+            text-shadow: 0 0 5px #ffffff,
+                0 0 10px #ffffff,
+                0 0 20px #ffffff;
+            box-shadow: 0 0 5px #008cff,
+                0 0 20px #008cff,
+                0 0 50px #008cff,
+                0 0 100px #008cff;
+        }
+    </style>
+    <title>404: Not found</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <img id="icon" src="/static/assets/demo_profile.svg" width="30" height="30" alt="Taskme Icon">
+        </div>
+        <div class="main_text">
+            <a href="/"><span class="text_t">Taskide</span></a>
+        </div>
+    </header>
+    <main>
+        <h1 class="gradient-text ">Oops!</h1>
+        <p class="para">Whoops! That page you wanted?
+            It went on a wild adventure with a quirky gang of
+            internet memes. Guess we'll have to
+            embrace the chaos and create our own laughter-filled web journey!
+        <p>
+            <button role="link" id="home" onclick="location.href='/'">Back to home?</button>
+    </main>
+</body>
+
+</html>
