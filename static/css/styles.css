@@ -602,6 +602,10 @@ button>img {
         width: 100%;
     }
 
+    #logo{
+        display: none;
+    }
+
     .tasks li {
         padding: 0.8rem;
         width: 88%;

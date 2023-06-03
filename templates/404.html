@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link href="/static/assets/logo.svg" rel="icon" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -87,8 +88,7 @@
             user-select: none;
         }
 
-        #home:hover,
-        :focus {
+        #home:hover {
             color: #ffffff;
             background: #008cff;
             border: 1px solid #008cff;
@@ -107,7 +107,8 @@
 <body>
     <header>
         <div>
-            <img id="icon" src="/static/assets/demo_profile.svg" width="30" height="30" alt="Taskme Icon">
+            <a href="/">
+                <img id="icon" src="/static/assets/logo.svg" width="30" height="30" alt="Taskme Icon"></a>
         </div>
         <div class="main_text">
             <a href="/"><span class="text_t">Taskide</span></a>

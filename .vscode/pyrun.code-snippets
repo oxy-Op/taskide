@@ -1,9 +1,0 @@
-{
-  "Run Python Script": {
-    "prefix": "run",
-    "body": [
-      "python ${TM_FILEPATH}"
-    ],
-    "description": "Run Python script"
-  }
-}
